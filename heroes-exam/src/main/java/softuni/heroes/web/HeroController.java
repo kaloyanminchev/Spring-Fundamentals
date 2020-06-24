@@ -69,13 +69,34 @@ public class HeroController {
         return modelAndView;
     }
 
+//    @GetMapping("/delete/{id}")
+//    public String delete(@PathVariable("id") String id, HttpSession session) {
+//        if (session.getAttribute("user") == null) {
+//            return "redirect:/users/login";
+//        } else {
+//            this.heroService.deleteHero(id);
+//            return "redirect:/";
+//        }
+//    }
+
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") String id, HttpSession session) {
+    public ModelAndView delete(@PathVariable("id") String id, HttpSession session,
+                               ModelAndView modelAndView) {
+        if (session.getAttribute("user") == null) {
+            modelAndView.setViewName("redirect:/users/login");
+        } else {
+            modelAndView.setViewName("delete-hero");
+            modelAndView.addObject("hero", this.heroService.findHeroById(id));
+        }
+        return modelAndView;
+    }
+
+    @GetMapping("/confirmDelete/{id}")
+    public String deleteConfirm(@PathVariable("id") String id, HttpSession session) {
         if (session.getAttribute("user") == null) {
             return "redirect:/users/login";
-        } else {
-            this.heroService.deleteHero(id);
-            return "redirect:/";
         }
+        this.heroService.deleteHero(id);
+        return "redirect:/";
     }
 }

@@ -12,27 +12,32 @@
 <main>
     <h1 class="text-center mt-2">Delete Hero</h1>
     <hr class="hr-3"/>
-    <form class="mx-auto w-15">
+    <form class="mx-auto w-15" th:action="@{/heroes/confirmDelete/{id}(id = *{id})}" th:object="${hero}">
         <div class="form-group">
             <div class="label-holder d-flex justify-content-center text-white">
                 <label for="name" class="h3 mb-2">Name</label>
             </div>
-            <input type="text" class="form-control" id="name" name="name" value="SoulTaker" disabled="true">
+            <input class="form-control" disabled="true" id="name" name="name" th:field="*{name}" th:value="*{name}"
+                   type="text">
         </div>
         <div class="form-group">
             <div class="label-holder d-flex justify-content-center text-white">
                 <label for="heroClass" class="h3 mb-2">Hero class</label>
             </div>
-            <input type="text" class="form-control" id="heroClass" name="heroClass" value="Warrior" disabled="true"/>
+            <input class="form-control" disabled="true" id="heroClass" name="heroClass" th:field="*{heroClass}"
+                   th:value="*{heroClass}" type="text"/>
         </div>
         <div class="form-group">
             <div class="label-holder d-flex justify-content-center text-white">
                 <label for="level" class="h3 mb-2">Level</label>
             </div>
-            <input type="number" class="form-control" id="level" name="level" value="75" disabled="true"/>
+            <input class="form-control" disabled="true" id="level" name="level" th:field="*{level}" th:value="*{level}"
+                   type="number"/>
         </div>
         <div class="button-holder d-flex justify-content-center">
-            <button class="btn btn-danger text-white mb-3" type="submit" value="Delete Hero">Delete Hero</button>
+            <button class="btn btn-danger text-white mb-3" type="submit"
+                    value="Delete Hero">Delete Hero
+            </button>
         </div>
     </form>
 </main>
