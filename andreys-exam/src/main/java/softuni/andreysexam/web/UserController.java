@@ -64,6 +64,7 @@ public class UserController {
 
         if (this.userService.findByUsername(userAddBindingModel.getUsername()) != null) {
             redirectAttributes.addFlashAttribute("userExists", true);
+            redirectAttributes.addFlashAttribute("userAddBindingModel", userAddBindingModel);
             return "redirect:register";
         }
 

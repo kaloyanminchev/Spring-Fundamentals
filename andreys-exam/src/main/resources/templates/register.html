@@ -17,7 +17,7 @@
     <form class="mx-auto mb-5 text-center w-25 bg-dark p-3 rounded" th:action="@{/users/register}" th:method="POST"
           th:object="${userAddBindingModel}">
         <th:block th:if="${userExists}">
-            <small th:text="|Username exists|" class="text-danger"></small>
+            <small class="text-danger" th:text="|USERNAME ALREADY EXISTS|"></small>
         </th:block>
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
